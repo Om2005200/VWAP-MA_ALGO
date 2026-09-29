@@ -46,6 +46,13 @@ class VWAP:
 
         total_sum=[]
         vol_total=[]
+        first_14_data_list=[]
+        closing_list=[]
+        opening_list=[]
+        high_list=[]
+        low_list=[]
+        date_list=[]
+        time_list=[]
 
         for revised_data in main_data:
             revised_close=revised_data['CLOSING_PRICE']
@@ -53,9 +60,15 @@ class VWAP:
             revised_dates=revised_data['DATE']
             revised_high=revised_data['HIGH']
             revised_low=revised_data['LOW']
+            revised_time=revised_data['TIME']
             revised_volume=revised_data['VOLUME']
             cumulative_volume=revised_data['VWAP_CU']
             if current_date==revised_dates:
+                closing_list.append(revised_close)
+                opening_list.append(revised_open)
+                high_list.append(revised_high)
+                low_list.append(revised_low)
+                time_list.append(revised_time)
                 total_sum.append(cumulative_volume)
                 vol_total.append(revised_volume)
 
@@ -63,8 +76,41 @@ class VWAP:
         final_data=sum(total_sum)
         final_vols=sum(vol_total)
         final_result=final_data//final_vols
-        print(final_result)
+
+
+
+       
+        if len(main_data)<14:
+            print('Insufficient data')
+            return
+
+
+
+        prev_time_list=[]
+        #print(closing_list)
+        for prices in time_list:
+            index_finder=time_list.index(prices)
+            if index_finder%2!=0:
+
+                prev_time_list.append(index_finder)
+        print(prev_time_list)
+        for price in prev_time_list:
+            prev_closings=closing_list[price]
+            print(prev_closings)
+
+
+            
+
+        for_closes=closing_list[:14]
+        for_opens=opening_list[:14]
+        for_highs=high_list[:14]
+        for_lows=low_list[:14]
         
+
+
+        
+
+
        
 
 
