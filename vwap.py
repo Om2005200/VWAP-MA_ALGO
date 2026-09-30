@@ -53,6 +53,7 @@ class VWAP:
         low_list=[]
         date_list=[]
         time_list=[]
+        finalized_tr_list=[]
 
         for revised_data in main_data:
             revised_close=revised_data['CLOSING_PRICE']
@@ -86,25 +87,125 @@ class VWAP:
 
 
 
-        prev_time_list=[]
-        #print(closing_list)
-        for prices in time_list:
-            index_finder=time_list.index(prices)
-            if index_finder%2!=0:
+        # prev_time_list=[]
+        # prev_close_list=[]
+        # #print(closing_list)
+        # for prices in time_list:
+        #     index_finder=time_list.index(prices)
+        #     if index_finder%2!=0:
 
-                prev_time_list.append(index_finder)
-        print(prev_time_list)
-        for price in prev_time_list:
-            prev_closings=closing_list[price]
-            print(prev_closings)
+        #         prev_time_list.append(index_finder)
+        # #print(prev_time_list)
+        # for price in prev_time_list:
+        #     prev_closings=closing_list[price]
+        #     #print(prev_closings)
+        #     prev_close_list.append(prev_closings)
+      
+        current_highs=high_list[1:14]
+        current_high=high_list[:14]
+
+        prev_closes=closing_list[0:13]
+        prev_highs=high_list[0:13]
+        prev_lows=low_list[0:13]
+
+        current_low=low_list[:14]
+        current_lows=low_list[1:14]
+
+        plus_dm=[x-y for x,y in zip(current_highs,prev_highs)]
+        negative_dm=[x-y for x,y in zip(prev_lows,current_lows)]
 
 
-            
 
-        for_closes=closing_list[:14]
-        for_opens=opening_list[:14]
-        for_highs=high_list[:14]
-        for_lows=low_list[:14]
+
+        tr_1=[x-y for x,y in zip(current_high,current_low)]
+        tr_2=[x-y for x,y in zip(current_highs,prev_closes)]
+        tr_3=[x-y for x,y in zip(current_low,prev_closes)]
+        top_list=[]
+        for values in tr_3:
+            main=abs(values)
+            top_list.append(main)
+        for x,y,z in zip(tr_1,tr_2,top_list):
+            kj=max(x,y,z)
+            finalized_tr_list.append(kj)
+
+
+        # print(plus_dm)
+        # print(negative_dm)
+        positive_score_card=[]
+        negative_score_card=[]
+        p_dm=[]
+        n_dm=[]
+        final_n_dm=[]
+
+
+        for positive_dm in plus_dm:
+            if positive_dm>0:
+                positive_score_card.append(positive_dm)
+
+            elif positive_dm<0:
+                positive_score_card.append(0)
+        for negative_dms in negative_dm:
+            if negative_dms<0:
+                negative_score_card.append(negative_dms)
+            if negative_dms>0:
+                negative_score_card.append(0)
+
+
+        # print(len(positive_score_card))
+        # print(len(negative_score_card))
+
+
+
+        for kj in positive_score_card:
+            if kj<=0:
+                p_dm.append(0)
+            if kj>0:
+                p_dm.append(kj)
+        for ju in negative_score_card:
+            if ju>=0:
+                n_dm.append(0)
+            if ju<0:
+                n_dm.append(ju)
+
+        print(p_dm)
+        final_p_dm=[]
+        finalized_n_dm=[]
+
+
+        for adx_based in n_dm:
+            v=abs(adx_based)
+            final_n_dm.append(v)
+
+        for x,y in zip(p_dm,final_n_dm):
+            if x>y:
+                final_p_dm.append(x)
+            if x<y:
+                final_p_dm.append(0)
+            if x==y:
+                final_p_dm.append(x)
+
+            elif y>x:
+                finalized_n_dm.append(y)
+            if y<x:
+                finalized_n_dm.append(0)
+            if y==x:
+                finalized_n_dm.append(y)
+        print(final_p_dm)
+        
+        print(finalized_n_dm)
+
+
+
+
+
+                    
+                
+        
+
+
+
+
+        
         
 
 
