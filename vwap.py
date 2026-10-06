@@ -224,114 +224,165 @@ class VWAP:
             json.dump(main_data,gf,indent=4)
 
 
-        # for latest_data in main_data:
-        #     latest_high=latest_data['HIGH']
-        #     latest_low=latest_data['LOW']
-        #     latest_vwap=latest_data['VWAP']
-        #     latest_close=latest_data['CLOSING_PRICE']
-        #     latest_time=latest_data['TIME']
-        #     prev_high_list.append(latest_high)
-        #     prev_close_list.append(latest_close)
-        #     prev_low_list.append(latest_low)
-        #     prev_vwap_list.append(latest_vwap)
-        #     prev_time_list.append(latest_time)
+        for latest_data in main_data:
+            latest_high=latest_data['HIGH']
+            latest_low=latest_data['LOW']
+            latest_vwap=latest_data['VWAP']
+            latest_close=latest_data['CLOSING_PRICE']
+            latest_time=latest_data['TIME']
+            prev_high_list.append(latest_high)
+            prev_close_list.append(latest_close)
+            prev_low_list.append(latest_low)
+            prev_vwap_list.append(latest_vwap)
+            prev_time_list.append(latest_time)
 
-        # revised_high_data=prev_high_list[16:]
+        revised_high_data=prev_high_list[16:]
         
-        # revised_closed_price=prev_close_list[15:-1]
-        # revised_low_price=prev_low_list[16:]
-        # surya=[]
-        # surya_2=[]
-        # surya_3=[]
-        # tr_1_plus=[x-y for x,y in zip(revised_high_data,revised_low_price)]
-        # tr_2_plus=[x-y for x,y in zip(revised_high_data,revised_closed_price)]
-        # tr_3_plus=[x-y for x,y in zip(revised_low_price,revised_closed_price)]
-        # # print(len(tr_1_plus))
-        # # print(len(tr_2_plus))
-        # # print(len(tr_3_plus))
-        # for the_value in tr_2_plus:
-        #     revised_values=abs(the_value)
-        #     surya_2.append(revised_values)
+        revised_closed_price=prev_close_list[15:-1]
+        revised_low_price=prev_low_list[16:]
+        surya=[]
+        surya_2=[]
+        surya_3=[]
+        tr_1_plus=[x-y for x,y in zip(revised_high_data,revised_low_price)]
+        tr_2_plus=[x-y for x,y in zip(revised_high_data,revised_closed_price)]
+        tr_3_plus=[x-y for x,y in zip(revised_low_price,revised_closed_price)]
+        # print(len(tr_1_plus))
+        # print(len(tr_2_plus))
+        # print(len(tr_3_plus))
+        for the_value in tr_2_plus:
+            revised_values=abs(the_value)
+            surya_2.append(revised_values)
 
-        # for val in tr_3_plus:
-        #     revised_va=abs(val)
-        #     surya_3.append(revised_va)
-        # for a,b,c in zip(tr_1_plus,surya_2,surya_3):
-        #     if a>b and c:
-        #         surya.append(a)
-        #     if b>a and c:
-        #         surya.append(b)
-        #     if c>a and b:
-        #         surya.append(c)
+        for val in tr_3_plus:
+            revised_va=abs(val)
+            surya_3.append(revised_va)
+        for a,b,c in zip(tr_1_plus,surya_2,surya_3):
+            if a>b and c:
+                surya.append(a)
+            if b>a and c:
+                surya.append(b)
+            if c>a and b:
+                surya.append(c)
 
-        #     if a==b and b==c:
-        #         surya.append(a)
-        #     if b==a and a==c:
-        #         surya.append(b)
-        #     if c==a and b==a:
-        #         surya.append(c)
-
-
-
-        vwap_list=[main_data[15]['VWAP']]
-        current_vwap_=[]
-        closed_list=[main_data[15]['CLOSING_PRICE']]
-        highed_list=[]
-        lowed_list=[]
-        opened_list=[]
+            if a==b and b==c:
+                surya.append(a)
+            if b==a and a==c:
+                surya.append(b)
+            if c==a and b==a:
+                surya.append(c)
 
 
 
-        for lateral_data in main_data[15:]:
 
-            lateral_vwaps=lateral_data['VWAP']
-            close=lateral_data['CLOSING_PRICE']
-            highed=lateral_data['HIGH']
-            low_=lateral_data['LOW']
-
-
-            vwap_list.append(lateral_vwaps)
-            closed_list.append(close)
-            highed_list.append(highed)
-            lowed_list.append(low_)
+        main_vwap_list=[]
+        local_list=[]
+        current=[]
+        prev=[]
+        for elements in main_data[15:]:
+            main_vwap=elements['VWAP']
+            main_vwap_list.append(main_vwap)
 
 
-            if len(main_data)<15:
-                return
+
+        for latest_elements in main_vwap_list:
+            new_element_index_finder=main_vwap_list.index(latest_elements)
 
 
-            value_mix_1=[]
+            prev_element=new_element_index_finder-1
+            current_value=main_vwap_list[new_element_index_finder]
+            current.append(current_value)
+            prev_value=main_vwap_list[prev_element]
 
-            prev_close=closed_list[-2]
-            prev_vwap=vwap_list[-2]
-
-            current_high_=highed_list[-1]
-            current_lower=lowed_list[-1]
-
-
-            tr_1_=current_high_-current_lower
-            print(tr_1_)
-            value_mix_1.append(tr_1_)
-
-            tr_2_=abs(current_high_-prev_close)
-            value_mix_1.append(tr_2_)
-
-            tr_3_=abs(current_lower-prev_close)
-            value_mix_1.append(tr_3_)
+            prev.append(prev_value)
 
 
-            raw_tr=max(value_mix_1)
-
-            new_smoothed=prev_vwap-(prev_vwap/14)+raw_tr
-            #lateral_data['VWAP']=new_smoothed
-
-            lateral_data['VWAP']=new_smoothed
-
-            vwap_list[-1]=new_smoothed
+        first_value=current[0]
+        second_value=surya[0]
+        new_smoothed=first_value-(first_value/14)+second_value
+        local_list.append(new_smoothed)        
+        print(main_vwap_list)
 
 
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as jh:
-            json.dump(main_data,jh,indent=4)
+
+        fender=main_vwap_list[2:]
+
+        for rounders in fender:
+            x=[x-(x/14)+y for x,y in zip(local_list,surya[1:])]
+            local_list.append(x[-1])
+        print(local_list)
+
+
+
+
+                    
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+            
+
+
+
+      
+
+
+
+
+
+
+
+
+
 
                     
 
