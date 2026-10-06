@@ -299,17 +299,27 @@ class VWAP:
         first_value=current[0]
         second_value=surya[0]
         new_smoothed=first_value-(first_value/14)+second_value
-        local_list.append(new_smoothed)        
-        print(main_vwap_list)
-
+        local_list.append(new_smoothed)      
+        main_data[16]['VWAP'] = new_smoothed  
+      
 
 
         fender=main_vwap_list[2:]
 
-        for rounders in fender:
+        for index,rounders in enumerate(fender):
             x=[x-(x/14)+y for x,y in zip(local_list,surya[1:])]
-            local_list.append(x[-1])
-        print(local_list)
+            new_smoothed=x[-1]
+            local_list.append(new_smoothed)
+            #local_list.append(x[-1])
+            main_data[index + 17]['VWAP'] = new_smoothed
+
+        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as gf:
+            json.dump(main_data,gf,indent=4)
+        
+
+
+
+
 
 
 
