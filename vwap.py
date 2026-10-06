@@ -184,8 +184,8 @@ class VWAP:
 
 
         sum_of_tr=sum(finalized_tr_list)
-        sum_of_dm_1=sum(final_p_dm)
-        sum_of_dm_2=sum(final_n_dm)
+        # sum_of_dm_1=sum(final_p_dm)
+        # sum_of_dm_2=sum(final_n_dm)
 
         pre_post_data=[]
 
@@ -272,50 +272,186 @@ class VWAP:
                 surya.append(c)
 
 
+        
+        sum_of_dm_1=sum(final_p_dm)
+        
+        sum_of_dm_2=sum(finalized_n_dm)
+        new_positive_score_card=[]
+        new_negative_score_card=[]
+        again_p_dm=[]
+        again_n_dm=[]
+        final_again_n_dm=[]
+        final_again_p_dm=[]
+        again_finalized_n_dm=[]
 
 
-        main_vwap_list=[]
-        local_list=[]
-        current=[]
-        prev=[]
-        for elements in main_data[15:]:
-            main_vwap=elements['VWAP']
-            main_vwap_list.append(main_vwap)
 
 
 
-        for latest_elements in main_vwap_list:
-            new_element_index_finder=main_vwap_list.index(latest_elements)
+        again_highs=high_list[16:]
+        again_prev_highs=high_list[15:-1]
+        again_prev_lows=low_list[15:-1]
+        again_current_lows=low_list[16:]
+        again_plus_dm=[x-y for x,y in zip(again_highs,again_prev_highs)]
+        again_negative_dm=[x-y for x,y in zip(again_prev_lows,again_current_lows)]
+        for positive_dm_ in again_plus_dm:
+            if positive_dm_>0:
+                new_positive_score_card.append(positive_dm_)
+            elif positive_dm_<0:
+                new_positive_score_card.append(0)
 
 
-            prev_element=new_element_index_finder-1
-            current_value=main_vwap_list[new_element_index_finder]
-            current.append(current_value)
-            prev_value=main_vwap_list[prev_element]
+            elif positive_dm_ == 0:
+                new_positive_score_card.append(0)
 
-            prev.append(prev_value)
+        for  negative_dm_ in again_negative_dm:
+            if negative_dm_<0:
+                new_negative_score_card.append(negative_dm_)
+            elif negative_dm_>0:
+                new_negative_score_card.append(0)
+
+            elif negative_dm_ == 0:
+                new_negative_score_card.append(0)
 
 
-        first_value=current[0]
-        second_value=surya[0]
-        new_smoothed=first_value-(first_value/14)+second_value
-        local_list.append(new_smoothed)      
-        main_data[16]['VWAP'] = new_smoothed  
+
+
+
+        for jk in new_positive_score_card:
+            if jk<=0:
+                again_p_dm.append(0)
+
+
+            if jk>0:
+                again_p_dm.append(jk)
+
+
+        for uj in new_negative_score_card:
+            if uj>=0:
+                again_n_dm.append(0)
+
+
+            if uj<0:
+                again_n_dm.append(uj)
+
+
+        print(len(again_n_dm))
+        print(len(again_p_dm))
+
+        for adx_ in again_n_dm:
+            v_=abs(adx_)
+            final_again_n_dm.append(v_)
+
+
+        for x,y in zip(again_p_dm,final_again_n_dm):
+
+
+
+            if x>y:
+                final_again_p_dm.append(x)
+
+            if x<y:
+                final_again_p_dm.append(0)
+
+
+            if x==y:
+                final_again_p_dm.append(x)
+
+            elif y>x:
+                again_finalized_n_dm.append(y)
+
+            if y<x:
+                again_finalized_n_dm.append(0)
+
+
+            if y==x:
+                again_finalized_n_dm.append(y)
+
+
+
+            
+
+
+
+
+
+        
+
+        # main_vwap_list=[]
+        # local_list=[]
+        # current=[]
+        # prev=[]
+        # for elements in main_data[15:]:
+        #     main_vwap=elements['VWAP']
+        #     main_vwap_list.append(main_vwap)
+
+
+
+        # for latest_elements in main_vwap_list:
+        #     new_element_index_finder=main_vwap_list.index(latest_elements)
+
+
+        #     prev_element=new_element_index_finder-1
+        #     current_value=main_vwap_list[new_element_index_finder]
+        #     current.append(current_value)
+        #     prev_value=main_vwap_list[prev_element]
+
+        #     prev.append(prev_value)
+
+
+        # first_value=current[0]
+        # second_value=surya[0]
+        # new_smoothed=first_value-(first_value/14)+second_value
+        # local_list.append(new_smoothed)      
+        # main_data[16]['VWAP'] = new_smoothed  
       
 
 
-        fender=main_vwap_list[2:]
+        # fender=main_vwap_list[2:]
 
-        for index,rounders in enumerate(fender):
-            x=[x-(x/14)+y for x,y in zip(local_list,surya[1:])]
-            new_smoothed=x[-1]
-            local_list.append(new_smoothed)
-            #local_list.append(x[-1])
-            main_data[index + 17]['VWAP'] = new_smoothed
+        # for index,rounders in enumerate(fender):
+        #     x=[x-(x/14)+y for x,y in zip(local_list,surya[1:])]
+        #     new_smoothed=x[-1]
+        #     local_list.append(new_smoothed)
+        #     #local_list.append(x[-1])
+        #     main_data[index + 17]['VWAP'] = new_smoothed
 
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as gf:
-            json.dump(main_data,gf,indent=4)
-        
+        # with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as gf:
+        #     json.dump(main_data,gf,indent=4)
+
+
+
+
+        # main_data[15]['PLUS_DM']=sum_of_dm_1
+        # main_data[15]['NEGATIVE_DM']=sum_of_dm_2
+
+
+
+        # main_dm_1_list=[]
+        # local_list_=[]
+
+        # current_=[]
+        # prev_=[]
+        # for elements_ in main_data[15:]:
+        #     main_dm=elements_['PLUS_DM']
+        #     main_dm_1_list.append(main_dm)
+
+        # for latest_elements_ in main_dm_1_list:
+        #     new_element_index_finder_=main_dm_1_list.index(latest_elements_)
+        #     prev_element_=new_element_index_finder_-1
+        #     current_value_=main_dm_1_list[new_element_index_finder_]
+        #     current_.append(current_value_)
+        #     prev_value_=main_dm_1_list[prev_element_]
+        #     prev_.append(prev_value_)
+
+
+
+        # first_value_=current_[0]
+        # second_value_=
+
+
+
+
 
 
 
