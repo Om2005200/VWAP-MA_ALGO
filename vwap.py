@@ -509,6 +509,35 @@ class VWAP:
 
 
 
+        for again_ in main_data:
+            smoothed_dm=again_['PLUS_DM']
+            smoothed_tr=again_['VWAP']
+            negative_dm=again_['NEGATIVE_DM']
+            di=(smoothed_dm/smoothed_tr)*100
+            di_n=(negative_dm/smoothed_tr)*100
+            again_['DI_NEGATIVE']=di_n
+            
+            with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as uy:
+                json.dump(main_data,uy,indent=4)
+
+                            
+
+            again_['DI_PLUS']=di
+
+          
+            with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as uy:
+                json.dump(main_data,uy,indent=4)
+
+                
+
+
+
+
+
+    
+
+
+
 
         
 
