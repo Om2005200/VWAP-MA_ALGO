@@ -335,9 +335,6 @@ class VWAP:
                 again_n_dm.append(uj)
 
 
-        print(len(again_n_dm))
-        print(len(again_p_dm))
-
         for adx_ in again_n_dm:
             v_=abs(adx_)
             final_again_n_dm.append(v_)
@@ -369,7 +366,8 @@ class VWAP:
 
 
 
-            
+        print(len(again_finalized_n_dm))
+        print(len(final_again_p_dm))
 
 
 
@@ -377,77 +375,159 @@ class VWAP:
 
         
 
-        # main_vwap_list=[]
-        # local_list=[]
-        # current=[]
-        # prev=[]
-        # for elements in main_data[15:]:
-        #     main_vwap=elements['VWAP']
-        #     main_vwap_list.append(main_vwap)
+        main_vwap_list=[]
+        local_list=[]
+        current=[]
+        prev=[]
+        for elements in main_data[15:]:
+            main_vwap=elements['VWAP']
+            main_vwap_list.append(main_vwap)
 
 
 
-        # for latest_elements in main_vwap_list:
-        #     new_element_index_finder=main_vwap_list.index(latest_elements)
+        for latest_elements in main_vwap_list:
+            new_element_index_finder=main_vwap_list.index(latest_elements)
 
 
-        #     prev_element=new_element_index_finder-1
-        #     current_value=main_vwap_list[new_element_index_finder]
-        #     current.append(current_value)
-        #     prev_value=main_vwap_list[prev_element]
+            prev_element=new_element_index_finder-1
+            current_value=main_vwap_list[new_element_index_finder]
+            current.append(current_value)
+            prev_value=main_vwap_list[prev_element]
 
-        #     prev.append(prev_value)
+            prev.append(prev_value)
 
 
-        # first_value=current[0]
-        # second_value=surya[0]
-        # new_smoothed=first_value-(first_value/14)+second_value
-        # local_list.append(new_smoothed)      
-        # main_data[16]['VWAP'] = new_smoothed  
+        first_value=current[0]
+        second_value=surya[0]
+        new_smoothed=first_value-(first_value/14)+second_value
+        local_list.append(new_smoothed)      
+        main_data[16]['VWAP'] = new_smoothed  
       
 
 
-        # fender=main_vwap_list[2:]
+        fender=main_vwap_list[2:]
 
-        # for index,rounders in enumerate(fender):
-        #     x=[x-(x/14)+y for x,y in zip(local_list,surya[1:])]
-        #     new_smoothed=x[-1]
-        #     local_list.append(new_smoothed)
-        #     #local_list.append(x[-1])
-        #     main_data[index + 17]['VWAP'] = new_smoothed
+        for index,rounders in enumerate(fender):
+            x=[x-(x/14)+y for x,y in zip(local_list,surya[1:])]
+            new_smoothed=x[-1]
+            local_list.append(new_smoothed)
+            #local_list.append(x[-1])
+            main_data[index + 17]['VWAP'] = new_smoothed
 
-        # with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as gf:
-        #     json.dump(main_data,gf,indent=4)
-
-
-
-
-        # main_data[15]['PLUS_DM']=sum_of_dm_1
-        # main_data[15]['NEGATIVE_DM']=sum_of_dm_2
+        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as gf:
+            json.dump(main_data,gf,indent=4)
 
 
 
-        # main_dm_1_list=[]
-        # local_list_=[]
 
-        # current_=[]
-        # prev_=[]
-        # for elements_ in main_data[15:]:
-        #     main_dm=elements_['PLUS_DM']
-        #     main_dm_1_list.append(main_dm)
+        main_data[15]['PLUS_DM']=sum_of_dm_1
 
-        # for latest_elements_ in main_dm_1_list:
-        #     new_element_index_finder_=main_dm_1_list.index(latest_elements_)
-        #     prev_element_=new_element_index_finder_-1
-        #     current_value_=main_dm_1_list[new_element_index_finder_]
-        #     current_.append(current_value_)
-        #     prev_value_=main_dm_1_list[prev_element_]
-        #     prev_.append(prev_value_)
+        main_data[15]['NEGATIVE_DM']=sum_of_dm_2
+        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as lk:
+            json.dump(main_data,lk,indent=4)
 
 
 
-        # first_value_=current_[0]
-        # second_value_=
+
+        ######## POSITIVE DM ########
+
+
+
+        main_dm_positive_list=[]
+        localised_list=[]
+        current_list=[]
+        previous_list=[]
+
+
+        for atoms in main_data[15:]:
+            main_dm_plus=atoms['PLUS_DM']
+            main_dm_positive_list.append(main_dm_plus)
+        for latest_atoms in main_dm_positive_list:
+            latest_element_index_finder=main_dm_positive_list.index(latest_atoms)
+            prev_elements=latest_element_index_finder-1
+            current_value_=main_dm_positive_list[latest_element_index_finder]
+            current_list.append(current_value_)
+            prev_value_=main_dm_positive_list[prev_elements]
+            previous_list.append(prev_value_)
+
+
+
+        first_value_=current_list[0]
+        second_value_=final_again_p_dm[0]
+        new_smoothed_dm_positive=first_value_-(first_value_/14)+second_value_
+        localised_list.append(new_smoothed_dm_positive)
+
+        main_data[16]['PLUS_DM']=new_smoothed_dm_positive
+        
+        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as oy:
+            json.dump(main_data,oy,indent=4)
+
+        fender_=main_dm_positive_list[2:]
+        for index,rounders_ in enumerate(fender_):
+            x=[x-(x/14)+y for x,y in zip(localised_list,final_again_p_dm[1:])]
+            new_smoothed_final=x[-1]
+            main_data[index+17]['PLUS_DM']=new_smoothed_final
+
+        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as hy:
+            json.dump(main_data,hy,indent=4)
+
+
+
+
+        main_dm_negative_list=[]
+        localised_list_negative=[]
+        current_list_=[]
+        previous_list_=[]
+
+
+        for tr in main_data[15:]:
+            main_dm_negative=tr['NEGATIVE_DM']
+            main_dm_negative_list.append(main_dm_negative)
+        for latest_tr in main_dm_negative_list:
+            latest_element_index_finder_negative=main_dm_negative_list.index(latest_tr)
+            prev_elements_=latest_element_index_finder_negative-1
+            current_value_ne=main_dm_negative_list[latest_element_index_finder_negative]
+            current_list_.append(current_value_ne)
+            prev_value_ne=main_dm_negative_list[prev_elements_]
+
+        first_value_n=current_list_[0]
+        second_value_n=again_finalized_n_dm[0]
+        new_smoothed_dm_negative=first_value_n-(first_value_n/14)+second_value_n
+        localised_list_negative.append(new_smoothed_dm_negative)
+        main_data[16]['NEGATIVE_DM']=new_smoothed_dm_negative
+        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as iu:
+            json.dump(main_data,iu,indent=4)
+
+
+        fender_ne=main_dm_negative_list[2:]
+        for index,rounder in enumerate(fender_ne):
+            x=[x-(x/14)+y for x,y in zip(localised_list_negative,again_finalized_n_dm)]
+            new_smoothed_final_=x[-1]
+            main_data[index+17]['NEGATIVE_DM']=new_smoothed_final_
+        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as uu:
+            json.dump(main_data,uu,indent=4)
+
+
+
+
+        
+
+
+
+        
+
+
+
+
+        
+
+
+
+
+        
+
+
+
 
 
 
