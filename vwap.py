@@ -513,6 +513,7 @@ class VWAP:
             smoothed_dm=again_['PLUS_DM']
             smoothed_tr=again_['VWAP']
             negative_dm=again_['NEGATIVE_DM']
+
             di=(smoothed_dm/smoothed_tr)*100
             di_n=(negative_dm/smoothed_tr)*100
             again_['DI_NEGATIVE']=di_n
@@ -527,6 +528,20 @@ class VWAP:
           
             with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as uy:
                 json.dump(main_data,uy,indent=4)
+
+
+            new_di_plus=again_['DI_PLUS']
+            new_di_negative=again_['DI_NEGATIVE']
+            
+            dx=abs((new_di_plus-(-new_di_negative))/new_di_plus+(-new_di_negative))*100
+            again_['DX']=dx
+            with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as re:
+                json.dump(main_data,re,indent=4)
+
+
+
+
+        
 
                 
 
