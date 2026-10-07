@@ -478,6 +478,7 @@ class VWAP:
         localised_list_negative=[]
         current_list_=[]
         previous_list_=[]
+        dx_list=[]
 
 
         for tr in main_data[15:]:
@@ -537,6 +538,78 @@ class VWAP:
             again_['DX']=dx
             with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as re:
                 json.dump(main_data,re,indent=4)
+
+        
+        for ltx in main_data:
+            new_dx_values=ltx['DX']
+            dx_list.append(new_dx_values)
+
+        first_14_dx_value=sum(dx_list[:14])/14
+
+
+        main_data[15]['ADX']=first_14_dx_value
+        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as ww:
+            json.dump(main_data,ww,indent=4)
+
+
+
+
+        main_adx_list=[]
+        local_list_adx=[]
+        current_adx_list=[]
+        previous_adx_list=[]
+
+
+
+        for jag in main_data[15:]:
+            main_adx=jag['ADX']
+            main_adx_list.append(main_adx)
+
+        for latest_ in main_adx_list:
+            latest_element_index_finder_adx=main_adx_list.index(latest_)
+            prev_element_adx=latest_element_index_finder_adx-1
+            current_adx=main_adx_list[latest_element_index_finder_adx]
+            current_adx_list.append(current_adx)
+            prev_value_adx=main_adx_list[prev_element_adx]
+            previous_adx_list.append(prev_value_adx)
+
+
+
+
+
+        first_adx_value=current_adx_list[0]
+        second_adx_value=dx_list[0]
+        new_adx_value=((first_adx_value*13)+second_adx_value)/14
+        local_list_adx.append(new_adx_value)
+
+        main_data[16]['ADX']=new_adx_value
+        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as te:
+            json.dump(main_data,te,indent=4)
+
+
+
+        fender_adx=main_adx_list[2:]
+
+
+
+        for index,rounde in enumerate(fender_adx):
+            x=[x-(x/14)+y for x,y in zip(local_list_adx,dx_list[1:])]
+            new_smoothed_adx=x[-1]
+            local_list_adx.append(new_smoothed_adx)
+            main_data[index+17]['ADX']=new_smoothed_adx
+
+        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as ll:
+            json.dump(main_data,ll,indent=4)
+
+
+
+
+
+
+
+        
+
+            
 
 
 
