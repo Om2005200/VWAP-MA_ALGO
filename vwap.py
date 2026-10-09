@@ -16,17 +16,62 @@ class VWAP:
 
 
 
+    
 
+    
     def getting_the_data(self):
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'r') as df:
-            data=json.load(df)
-            return data 
+        file_list=["360one_revised_dataset_rsi_pro_data.json", "abb_revised_dataset_rsi_pro_data.json", "aplapollo_revised_dataset_rsi_pro_data.json", "aubank_revised_dataset_rsi_pro_data.json", "adaniensol_revised_dataset_rsi_pro_data.json", "adanient_revised_dataset_rsi_pro_data.json", "adanigreen_revised_dataset_rsi_pro_data.json", "adaniports_revised_dataset_rsi_pro_data.json", "adanipower_revised_dataset_rsi_pro_data.json", "atgl_revised_dataset_rsi_pro_data.json", "abcapital_revised_dataset_rsi_pro_data.json", "alkem_revised_dataset_rsi_pro_data.json", "ambujacem_revised_dataset_rsi_pro_data.json", "apollohosp_revised_dataset_rsi_pro_data.json", "ashokley_revised_dataset_rsi_pro_data.json", "asianpaint_revised_dataset_rsi_pro_data.json", "astral_revised_dataset_rsi_pro_data.json", "auropharma_revised_dataset_rsi_pro_data.json", "dmart_revised_dataset_rsi_pro_data.json", "axisbank_revised_dataset_rsi_pro_data.json", "bse_revised_dataset_rsi_pro_data.json", "bajaj-auto_revised_dataset_rsi_pro_data.json", "bajfinance_revised_dataset_rsi_pro_data.json", "bajajfinsv_revised_dataset_rsi_pro_data.json", "bajajhldng_revised_dataset_rsi_pro_data.json", "bankbaroda_revised_dataset_rsi_pro_data.json", "bankindia_revised_dataset_rsi_pro_data.json", "bdl_revised_dataset_rsi_pro_data.json", "bel_revised_dataset_rsi_pro_data.json", "bharatforg_revised_dataset_rsi_pro_data.json", "bhel_revised_dataset_rsi_pro_data.json", "bpcl_revised_dataset_rsi_pro_data.json", "bhartiartl_revised_dataset_rsi_pro_data.json", "groww_revised_dataset_rsi_pro_data.json", "biocon_revised_dataset_rsi_pro_data.json", "bluestarco_revised_dataset_rsi_pro_data.json", "boschltd_revised_dataset_rsi_pro_data.json", "britannia_revised_dataset_rsi_pro_data.json", "cgpower_revised_dataset_rsi_pro_data.json", "canbk_revised_dataset_rsi_pro_data.json", "cholafin_revised_dataset_rsi_pro_data.json", "cipla_revised_dataset_rsi_pro_data.json", "coalindia_revised_dataset_rsi_pro_data.json", "cochinship_revised_dataset_rsi_pro_data.json", "coforge_revised_dataset_rsi_pro_data.json", "colpal_revised_dataset_rsi_pro_data.json", "concor_revised_dataset_rsi_pro_data.json", "coromandel_revised_dataset_rsi_pro_data.json", "cumminsind_revised_dataset_rsi_pro_data.json", "dlf_revised_dataset_rsi_pro_data.json", "dabur_revised_dataset_rsi_pro_data.json", "divislab_revised_dataset_rsi_pro_data.json", "dixon_revised_dataset_rsi_pro_data.json", "drreddy_revised_dataset_rsi_pro_data.json", "eichermot_revised_dataset_rsi_pro_data.json", "eternal_revised_dataset_rsi_pro_data.json", "exideind_revised_dataset_rsi_pro_data.json", "nykaa_revised_dataset_rsi_pro_data.json", "federalbnk_revised_dataset_rsi_pro_data.json", "fortis_revised_dataset_rsi_pro_data.json", "gail_revised_dataset_rsi_pro_data.json", "gvt&d_revised_dataset_rsi_pro_data.json", "gmrairport_revised_dataset_rsi_pro_data.json", "glenmark_revised_dataset_rsi_pro_data.json", "godfryphlp_revised_dataset_rsi_pro_data.json", "godrejcp_revised_dataset_rsi_pro_data.json", "godrejprop_revised_dataset_rsi_pro_data.json", "grasim_revised_dataset_rsi_pro_data.json", "hcltech_revised_dataset_rsi_pro_data.json", "hdfcamc_revised_dataset_rsi_pro_data.json", "hdfcbank_revised_dataset_rsi_pro_data.json", "hdfclife_revised_dataset_rsi_pro_data.json", "havells_revised_dataset_rsi_pro_data.json", "heromotoco_revised_dataset_rsi_pro_data.json", "hindalco_revised_dataset_rsi_pro_data.json", "hal_revised_dataset_rsi_pro_data.json", "hindpetro_revised_dataset_rsi_pro_data.json", "hindunilvr_revised_dataset_rsi_pro_data.json", "hindzinc_revised_dataset_rsi_pro_data.json", "powerindia_revised_dataset_rsi_pro_data.json", "hudco_revised_dataset_rsi_pro_data.json", "hyundai_revised_dataset_rsi_pro_data.json", "icicibank_revised_dataset_rsi_pro_data.json", "icicigi_revised_dataset_rsi_pro_data.json", "iciciamc_revised_dataset_rsi_pro_data.json", "idfcfirstb_revised_dataset_rsi_pro_data.json", "itc_revised_dataset_rsi_pro_data.json", "indianb_revised_dataset_rsi_pro_data.json", "indhotel_revised_dataset_rsi_pro_data.json", "ioc_revised_dataset_rsi_pro_data.json", "irctc_revised_dataset_rsi_pro_data.json", "irfc_revised_dataset_rsi_pro_data.json", "ireda_revised_dataset_rsi_pro_data.json", "industower_revised_dataset_rsi_pro_data.json", "indusindbk_revised_dataset_rsi_pro_data.json", "naukri_revised_dataset_rsi_pro_data.json", "infy_revised_dataset_rsi_pro_data.json", "indigo_revised_dataset_rsi_pro_data.json", "jswenergy_revised_dataset_rsi_pro_data.json", "jswsteel_revised_dataset_rsi_pro_data.json", "jindalstel_revised_dataset_rsi_pro_data.json", "jiofin_revised_dataset_rsi_pro_data.json", "jublfood_revised_dataset_rsi_pro_data.json", "kei_revised_dataset_rsi_pro_data.json", "kpittech_revised_dataset_rsi_pro_data.json", "kalyankjil_revised_dataset_rsi_pro_data.json", "kotakbank_revised_dataset_rsi_pro_data.json", "ltf_revised_dataset_rsi_pro_data.json", "lgeindia_revised_dataset_rsi_pro_data.json", "lichsgfin_revised_dataset_rsi_pro_data.json", "ltm_revised_dataset_rsi_pro_data.json", "lt_revised_dataset_rsi_pro_data.json", "lauruslabs_revised_dataset_rsi_pro_data.json", "lenskart_revised_dataset_rsi_pro_data.json", "lodha_revised_dataset_rsi_pro_data.json", "lupin_revised_dataset_rsi_pro_data.json", "mrf_revised_dataset_rsi_pro_data.json", "m&mfin_revised_dataset_rsi_pro_data.json", "m&m_revised_dataset_rsi_pro_data.json", "mankind_revised_dataset_rsi_pro_data.json", "marico_revised_dataset_rsi_pro_data.json", "maruti_revised_dataset_rsi_pro_data.json", "mfsl_revised_dataset_rsi_pro_data.json", "maxhealth_revised_dataset_rsi_pro_data.json", "mazdock_revised_dataset_rsi_pro_data.json", "motilalofs_revised_dataset_rsi_pro_data.json", "mphasis_revised_dataset_rsi_pro_data.json", "mcx_revised_dataset_rsi_pro_data.json", "muthootfin_revised_dataset_rsi_pro_data.json", "nhpc_revised_dataset_rsi_pro_data.json", "nmdc_revised_dataset_rsi_pro_data.json", "ntpc_revised_dataset_rsi_pro_data.json", "nationalum_revised_dataset_rsi_pro_data.json", "nestleind_revised_dataset_rsi_pro_data.json", "oberoirlty_revised_dataset_rsi_pro_data.json", "ongc_revised_dataset_rsi_pro_data.json", "oil_revised_dataset_rsi_pro_data.json", "paytm_revised_dataset_rsi_pro_data.json", "ofss_revised_dataset_rsi_pro_data.json", "policybzr_revised_dataset_rsi_pro_data.json", "piind_revised_dataset_rsi_pro_data.json", "pageind_revised_dataset_rsi_pro_data.json", "patanjali_revised_dataset_rsi_pro_data.json", "persistent_revised_dataset_rsi_pro_data.json", "phoenixltd_revised_dataset_rsi_pro_data.json", "pidilitind_revised_dataset_rsi_pro_data.json", "polycab_revised_dataset_rsi_pro_data.json", "pfc_revised_dataset_rsi_pro_data.json", "powergrid_revised_dataset_rsi_pro_data.json", "premierene_revised_dataset_rsi_pro_data.json", "prestige_revised_dataset_rsi_pro_data.json", "pnb_revised_dataset_rsi_pro_data.json", "recltd_revised_dataset_rsi_pro_data.json", "radico_revised_dataset_rsi_pro_data.json", "rvnl_revised_dataset_rsi_pro_data.json", "reliance_revised_dataset_rsi_pro_data.json", "sbicard_revised_dataset_rsi_pro_data.json", "sbilife_revised_dataset_rsi_pro_data.json", "srf_revised_dataset_rsi_pro_data.json", "motherson_revised_dataset_rsi_pro_data.json", "shreecem_revised_dataset_rsi_pro_data.json", "shriramfin_revised_dataset_rsi_pro_data.json", "enrin_revised_dataset_rsi_pro_data.json", "siemens_revised_dataset_rsi_pro_data.json", "solarinds_revised_dataset_rsi_pro_data.json", "sbin_revised_dataset_rsi_pro_data.json", "sail_revised_dataset_rsi_pro_data.json", "sunpharma_revised_dataset_rsi_pro_data.json", "supremeind_revised_dataset_rsi_pro_data.json", "suzlon_revised_dataset_rsi_pro_data.json", "swiggy_revised_dataset_rsi_pro_data.json", "tvsmotor_revised_dataset_rsi_pro_data.json", "tatacap_revised_dataset_rsi_pro_data.json", "tatacomm_revised_dataset_rsi_pro_data.json", "tcs_revised_dataset_rsi_pro_data.json", "tataconsum_revised_dataset_rsi_pro_data.json", "tataelxsi_revised_dataset_rsi_pro_data.json", "tatainvest_revised_dataset_rsi_pro_data.json", "tmcv_revised_dataset_rsi_pro_data.json", "tmpv_revised_dataset_rsi_pro_data.json", "tatapower_revised_dataset_rsi_pro_data.json", "tatasteel_revised_dataset_rsi_pro_data.json", "techm_revised_dataset_rsi_pro_data.json", "titan_revised_dataset_rsi_pro_data.json", "torntpharm_revised_dataset_rsi_pro_data.json", "trent_revised_dataset_rsi_pro_data.json", "tiindia_revised_dataset_rsi_pro_data.json", "upl_revised_dataset_rsi_pro_data.json", "ultracemco_revised_dataset_rsi_pro_data.json", "unionbank_revised_dataset_rsi_pro_data.json", "unitdspr_revised_dataset_rsi_pro_data.json", "vbl_revised_dataset_rsi_pro_data.json", "vedl_revised_dataset_rsi_pro_data.json", "vmm_revised_dataset_rsi_pro_data.json", "idea_revised_dataset_rsi_pro_data.json", "voltas_revised_dataset_rsi_pro_data.json", "waareeener_revised_dataset_rsi_pro_data.json", "wipro_revised_dataset_rsi_pro_data.json", "yesbank_revised_dataset_rsi_pro_data.json", "zyduslife_revised_dataset_rsi_pro_data.json"]
+
+        #file_list = ["abb_revised_dataset_rsi_pro_data.json", "adaniensol_revised_dataset_rsi_pro_data.json", "adanient_revised_dataset_rsi_pro_data.json", "adanigreen_revised_dataset_rsi_pro_data.json", "adaniports_revised_dataset_rsi_pro_data.json", "adanipower_revised_dataset_rsi_pro_data.json", "ambujacem_revised_dataset_rsi_pro_data.json", "apollohosp_revised_dataset_rsi_pro_data.json", "asianpaint_revised_dataset_rsi_pro_data.json", "dmart_revised_dataset_rsi_pro_data.json", "axisbank_revised_dataset_rsi_pro_data.json", "bajaj-auto_revised_dataset_rsi_pro_data.json", "bajfinance_revised_dataset_rsi_pro_data.json", "bajajfinsv_revised_dataset_rsi_pro_data.json", "bajajhldng_revised_dataset_rsi_pro_data.json", "bankbaroda_revised_dataset_rsi_pro_data.json", "bel_revised_dataset_rsi_pro_data.json", "bpcl_revised_dataset_rsi_pro_data.json", "bhartiartl_revised_dataset_rsi_pro_data.json", "boschltd_revised_dataset_rsi_pro_data.json", "britannia_revised_dataset_rsi_pro_data.json", "cgpower_revised_dataset_rsi_pro_data.json", "canbk_revised_dataset_rsi_pro_data.json", "cholafin_revised_dataset_rsi_pro_data.json", "cipla_revised_dataset_rsi_pro_data.json", "coalindia_revised_dataset_rsi_pro_data.json", "cumminsind_revised_dataset_rsi_pro_data.json", "dlf_revised_dataset_rsi_pro_data.json", "divislab_revised_dataset_rsi_pro_data.json", "drreddy_revised_dataset_rsi_pro_data.json", "eichermot_revised_dataset_rsi_pro_data.json", "eternal_revised_dataset_rsi_pro_data.json", "gail_revised_dataset_rsi_pro_data.json", "godrejcp_revised_dataset_rsi_pro_data.json", "grasim_revised_dataset_rsi_pro_data.json", "hcltech_revised_dataset_rsi_pro_data.json", "hdfcamc_revised_dataset_rsi_pro_data.json", "hdfcbank_revised_dataset_rsi_pro_data.json", "hdfclife_revised_dataset_rsi_pro_data.json", "hindalco_revised_dataset_rsi_pro_data.json", "hal_revised_dataset_rsi_pro_data.json", "hindunilvr_revised_dataset_rsi_pro_data.json", "hindzinc_revised_dataset_rsi_pro_data.json", "hyundai_revised_dataset_rsi_pro_data.json", "icicibank_revised_dataset_rsi_pro_data.json", "itc_revised_dataset_rsi_pro_data.json", "indhotel_revised_dataset_rsi_pro_data.json", "ioc_revised_dataset_rsi_pro_data.json", "irfc_revised_dataset_rsi_pro_data.json", "infy_revised_dataset_rsi_pro_data.json", "indigo_revised_dataset_rsi_pro_data.json", "jswsteel_revised_dataset_rsi_pro_data.json", "jindalstel_revised_dataset_rsi_pro_data.json", "jiofin_revised_dataset_rsi_pro_data.json", "kotakbank_revised_dataset_rsi_pro_data.json", "ltm_revised_dataset_rsi_pro_data.json", "lt_revised_dataset_rsi_pro_data.json", "lodha_revised_dataset_rsi_pro_data.json", "m&m_revised_dataset_rsi_pro_data.json", "maruti_revised_dataset_rsi_pro_data.json", "maxhealth_revised_dataset_rsi_pro_data.json", "mazdock_revised_dataset_rsi_pro_data.json", "muthootfin_revised_dataset_rsi_pro_data.json", "ntpc_revised_dataset_rsi_pro_data.json", "nestleind_revised_dataset_rsi_pro_data.json", "ongc_revised_dataset_rsi_pro_data.json", "pidilitind_revised_dataset_rsi_pro_data.json", "pfc_revised_dataset_rsi_pro_data.json", "powergrid_revised_dataset_rsi_pro_data.json", "pnb_revised_dataset_rsi_pro_data.json", "recltd_revised_dataset_rsi_pro_data.json", "reliance_revised_dataset_rsi_pro_data.json", "sbilife_revised_dataset_rsi_pro_data.json", "motherson_revised_dataset_rsi_pro_data.json", "shreecem_revised_dataset_rsi_pro_data.json", "shriramfin_revised_dataset_rsi_pro_data.json", "enrin_revised_dataset_rsi_pro_data.json", "siemens_revised_dataset_rsi_pro_data.json", "solarinds_revised_dataset_rsi_pro_data.json", "sbin_revised_dataset_rsi_pro_data.json", "sunpharma_revised_dataset_rsi_pro_data.json", "tvsmotor_revised_dataset_rsi_pro_data.json", "tatacap_revised_dataset_rsi_pro_data.json", "tcs_revised_dataset_rsi_pro_data.json", "tataconsum_revised_dataset_rsi_pro_data.json", "tmcv_revised_dataset_rsi_pro_data.json", "tmpv_revised_dataset_rsi_pro_data.json", "tatapower_revised_dataset_rsi_pro_data.json", "tatasteel_revised_dataset_rsi_pro_data.json", "techm_revised_dataset_rsi_pro_data.json", "titan_revised_dataset_rsi_pro_data.json", "torntpharm_revised_dataset_rsi_pro_data.json", "trent_revised_dataset_rsi_pro_data.json", "ultracemco_revised_dataset_rsi_pro_data.json", "unionbank_revised_dataset_rsi_pro_data.json", "unitdspr_revised_dataset_rsi_pro_data.json", "vbl_revised_dataset_rsi_pro_data.json", "vedl_revised_dataset_rsi_pro_data.json", "wipro_revised_dataset_rsi_pro_data.json", "zyduslife_revised_dataset_rsi_pro_data.json"]
+        
+        all_data=[]
+        for files in file_list:
+            with open(r"C:\Users\dasho\{}".format(files),'r') as k:
+                data=json.load(k)
+            all_data.append((data,files))
+
+        return all_data
+
+    
+       
+    def opening_the_order_log(self,file_name):
+
+        file_path = r'C:\Users\dasho\{}vwap_strategy_orderbook.json'.format(file_name)
 
 
+        try:
+            with open(file_path, 'r') as x:
+                data = json.load(x)
 
-    def analyzing_the_data(self):
-        main_data=self.getting_the_data()
+                # if file somehow contains null
+                if data is None:
+                    data = []
+
+                return data
+
+        except FileNotFoundError:
+
+            print("NO ORDERBOOK FOUND. CREATING NEW FILE")
+
+            with open(file_path, 'w') as x:
+                json.dump([], x, indent=4)
+
+            return []
+
+        except json.JSONDecodeError:
+
+            print("ORDERBOOK CORRUPTED. RESETTING")
+
+            with open(file_path, 'w') as x:
+                json.dump([], x, indent=4)
+
+            return []
+
+    def analyzing_the_data(self,stock_data:str):
+        main_data,file_name=stock_data
         current_date="2026-09-28"
+        order_log=self.opening_the_order_log(file_name)
+
 
         for datas in main_data:
             opening_prices=datas['OPEN']
@@ -41,7 +86,7 @@ class VWAP:
                 vwap_vol=vwap_calc*vols
                 datas['VWAP_CU']=vwap_vol
 
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as gf:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as gf:
             json.dump(main_data,gf,indent=4)
 
 
@@ -70,6 +115,7 @@ class VWAP:
         prev_vwap_list=[]
         prev_close_list=[]
         prev_time_list=[]
+        semi_top_list=[]
 
 
         for revised_data in main_data:
@@ -125,7 +171,13 @@ class VWAP:
             main=abs(values)
             top_list.append(main)
 
-        for x,y,z in zip(tr_1,tr_2,top_list):
+
+        for va in tr_2:
+            main_=abs(va)
+            semi_top_list.append(main_)
+            
+
+        for x,y,z in zip(tr_1,semi_top_list,top_list):
             kj=max(x,y,z)
             finalized_tr_list.append(kj)
 
@@ -217,10 +269,10 @@ class VWAP:
 
         finalized_new_tr=max(pre_post_data)
 
-        first_data['VWAP']=sum_of_tr-(sum_of_tr/14)+finalized_new_tr
+        first_data['VWAP']=sum_of_tr
 
 
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as gf:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as gf:
             json.dump(main_data,gf,indent=4)
 
 
@@ -366,8 +418,8 @@ class VWAP:
 
 
 
-        print(len(again_finalized_n_dm))
-        print(len(final_again_p_dm))
+        # print(len(again_finalized_n_dm))
+        # print(len(final_again_p_dm))
 
 
 
@@ -414,7 +466,7 @@ class VWAP:
             #local_list.append(x[-1])
             main_data[index + 17]['VWAP'] = new_smoothed
 
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as gf:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as gf:
             json.dump(main_data,gf,indent=4)
 
 
@@ -423,7 +475,7 @@ class VWAP:
         main_data[15]['PLUS_DM']=sum_of_dm_1
 
         main_data[15]['NEGATIVE_DM']=sum_of_dm_2
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as lk:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as lk:
             json.dump(main_data,lk,indent=4)
 
 
@@ -459,7 +511,7 @@ class VWAP:
 
         main_data[16]['PLUS_DM']=new_smoothed_dm_positive
         
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as oy:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as oy:
             json.dump(main_data,oy,indent=4)
 
         fender_=main_dm_positive_list[2:]
@@ -468,7 +520,7 @@ class VWAP:
             new_smoothed_final=x[-1]
             main_data[index+17]['PLUS_DM']=new_smoothed_final
 
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as hy:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as hy:
             json.dump(main_data,hy,indent=4)
 
 
@@ -496,7 +548,7 @@ class VWAP:
         new_smoothed_dm_negative=first_value_n-(first_value_n/14)+second_value_n
         localised_list_negative.append(new_smoothed_dm_negative)
         main_data[16]['NEGATIVE_DM']=new_smoothed_dm_negative
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as iu:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as iu:
             json.dump(main_data,iu,indent=4)
 
 
@@ -505,7 +557,7 @@ class VWAP:
             x=[x-(x/14)+y for x,y in zip(localised_list_negative,again_finalized_n_dm)]
             new_smoothed_final_=x[-1]
             main_data[index+17]['NEGATIVE_DM']=new_smoothed_final_
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as uu:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as uu:
             json.dump(main_data,uu,indent=4)
 
 
@@ -519,7 +571,7 @@ class VWAP:
             di_n=(negative_dm/smoothed_tr)*100
             again_['DI_NEGATIVE']=di_n
             
-            with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as uy:
+            with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as uy:
                 json.dump(main_data,uy,indent=4)
 
                             
@@ -527,7 +579,7 @@ class VWAP:
             again_['DI_PLUS']=di
 
           
-            with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as uy:
+            with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as uy:
                 json.dump(main_data,uy,indent=4)
 
 
@@ -536,7 +588,7 @@ class VWAP:
             
             dx=abs((new_di_plus-(-new_di_negative))/new_di_plus+(-new_di_negative))*100
             again_['DX']=dx
-            with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as re:
+            with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as re:
                 json.dump(main_data,re,indent=4)
 
         
@@ -548,7 +600,7 @@ class VWAP:
 
 
         main_data[15]['ADX']=first_14_dx_value
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as ww:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w')as ww:
             json.dump(main_data,ww,indent=4)
 
 
@@ -583,7 +635,7 @@ class VWAP:
         local_list_adx.append(new_adx_value)
 
         main_data[16]['ADX']=new_adx_value
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as te:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as te:
             json.dump(main_data,te,indent=4)
 
 
@@ -598,8 +650,182 @@ class VWAP:
             local_list_adx.append(new_smoothed_adx)
             main_data[index+17]['ADX']=new_smoothed_adx
 
-        with open(r"C:\Users\dasho\vwap_demo_revised_testing.json",'w') as ll:
+        with open(r'C:\Users\dasho\{}.json'.format(file_name),'w') as ll:
             json.dump(main_data,ll,indent=4)
+
+
+
+
+    def taking_the_positions(self,stock_data:str):
+
+
+
+
+        main_data,file_name=stock_data
+        order_log=self.opening_the_order_log(file_name)
+        close_list=[]
+        time_list=[]
+
+
+
+        current_date="2026-09-28"
+
+        for datas in main_data:
+            main_close=datas['CLOSING_PRICE']
+            main_open=datas['OPEN']
+            main_time=datas['TIME']
+            #main_rsi=datas['RSI']
+            main_vwap=datas['VWAP']
+            main_di_plus=datas['DI_PLUS']
+            main_date=datas['DATE']
+            main_di_negative=datas['DI_NEGATIVE']
+
+            close_list.append(main_close)
+            time_list.append(main_time)
+
+
+        current_closing=close_list[-1]
+        current_time=time_list[-1]
+        print(current_time)
+
+        for fle in main_data:
+            fle_close=fle['CLOSING_PRICE']
+            fle_open=fle['OPEN']
+            fle_date=fle['DATE']
+            if current_date==fle_date:
+                if fle_close==current_closing:
+                    if fle_close>fle_open:
+
+
+                        semi_green_candle=[]
+                        finalized_green_candle=[]
+                        for green_data in main_data:
+                            green_close=green_data['CLOSING_PRICE']
+                            green_open=green_data['OPEN']
+                            green_time=green_data['TIME']
+                            green_vwap=green_data['VWAP']
+                            green_date=green_data['DATE']
+
+                            green_di_plus=green_data['DI_PLUS']
+                            green_di_negative=green_data['DI_NEGATIVE']
+
+
+                            if green_date==current_date:
+                                if green_close==current_closing:
+
+                                    if green_close>green_open:
+                                        
+                                        if green_time==current_time:
+                                            if green_close>green_vwap:
+                                                if green_di_plus<green_di_negative:
+
+                                                
+                                                    semi_green_candle.append(green_data)
+                                                    main_green_candle=semi_green_candle[-1]
+
+
+                        if main_green_candle is not None:
+                            finalized_green_candle.append(main_green_candle)
+
+
+                            print(f"\n[{file_name}] ✅ COMPLETE SETUP APPROVED")
+                            print(f"[{file_name}] CANDLE : {semi_green_candle}")
+                            
+                            if new_order not in order_log:
+
+                                order_log.append(new_order)
+
+                                with open(r'C:\Users\dasho\{}vwap_strategy_orderbook.json'.format(file_name),'w') as rr:
+                                    json.dump(order_log,rr,indent=4)
+
+                    elif fle_close<fle_open:
+                        semi_red_candle_list=[]
+                        finalized_red_candle=[]
+                        semi_red_candle=None
+
+                        for red_candles in main_data:
+                            red_close=red_candles['CLOSE']
+                            red_opens=red_candles['OPEN']
+                            red_dates=red_candles['DATE']
+                            red_vwap=red_candles['VWAP']
+                            red_di_plus=red_candles['DI_PLUS']
+                            red_time=red_candles['TIME']
+
+                            red_di_negative=red_candles['DI_NEGATIVE']
+
+
+                            if current_date==red_dates:
+                                if red_close==current_closing:
+                                    if red_time==current_time:
+                                        if red_close<red_opens:
+                                            if red_di_negative>red_di_plus:
+
+
+                                                semi_red_candle_list.append(red_candles)
+                                                semi_red_candle=semi_red_candle_list[-1]
+
+
+
+                        if semi_red_candle is not None:
+                            finalized_red_candle.append(semi_red_candle)
+
+
+
+                            new_order={
+                                'STATUS':'OPEN',
+                                'CANDLE_':semi_red_candle
+                            }
+
+
+                            print(f"\n[{file_name}] ✅ COMPLETE SETUP APPROVED")
+                            print(f"[{file_name}] CANDLE : {semi_red_candle}")
+                            
+                            if new_order not in order_log:
+
+                                order_log.append(new_order)
+
+                                with open(r'C:\Users\dasho\{}vwap_strategy_orderbook.json'.format(file_name),'w') as rr:
+                                    json.dump(order_log,rr,indent=4)
+
+
+
+                            
+
+
+
+
+
+
+
+
+
+                    
+
+
+
+
+
+
+
+                    
+
+
+
+                            
+
+
+                                                
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -923,7 +1149,3 @@ class VWAP:
 
 
 
-
-g=VWAP()
-g.getting_the_data()
-g.analyzing_the_data()
